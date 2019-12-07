@@ -14,6 +14,8 @@
 !var/cache/.gitkeep
 !var/logs/.gitkeep
 !var/sessions/.gitkeep
+/Tests/App/cache
+/Tests/App/logs
 
 # Logs (Symfony4)
 /var/log/*
@@ -30,6 +32,7 @@
 !bin/console
 !bin/symfony_requirements
 /vendor/
+composer.lock
 
 # Assets and user uploads
 /web/bundles/
@@ -50,3 +53,7 @@
 
 # Embedded web-server pid file
 /.web-server-pid
+/nbproject/private/
+
+#netbeans
+nbproject/

@@ -1,0 +1,4 @@
+## YAML Template.
+# FrameworkBundle Configuration
+framework:
+secret: SimpleTestingApp
