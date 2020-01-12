@@ -11,6 +11,6 @@ doctrine:
                 is_bundle: false
                 type: annotation
                 dir: '%kernel.project_dir%/Entity'
-                prefix: 'Iad\Bundle\DbDecorationBundle\Tests\Entity'
+                prefix: 'Iad\Bundle\DbDecorationBundle\Tests\App\Entity'
                 alias: AppTest
 

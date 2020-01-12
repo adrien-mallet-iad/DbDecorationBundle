@@ -1,10 +1,10 @@
 <?php
 
-namespace Iad\Bundle\DbDecorationBundle\Tests\DataFixtures;
+namespace Iad\Bundle\DbDecorationBundle\Tests\App\DataFixtures;
 
-use Iad\Bundle\DbDecorationBundle\Tests\Entity\VictoriousKangaroo;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use Iad\Bundle\DbDecorationBundle\Tests\App\Entity\VictoriousKangaroo;
 
 class VictoriousKangarooFixtures extends Fixture
 {

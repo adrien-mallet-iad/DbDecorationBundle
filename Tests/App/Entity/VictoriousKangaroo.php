@@ -1,6 +1,6 @@
 <?php
 
-namespace Iad\Bundle\DbDecorationBundle\Tests\Entity;
+namespace Iad\Bundle\DbDecorationBundle\Tests\App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -54,6 +54,18 @@ class VictoriousKangaroo
     public function setIban(string $iban): self
     {
         $this->iban = $iban;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
 
         return $this;
     }

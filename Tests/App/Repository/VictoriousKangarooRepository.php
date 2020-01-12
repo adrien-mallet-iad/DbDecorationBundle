@@ -1,8 +1,8 @@
 <?php
 
-namespace Iad\Bundle\DbDecorationBundle\Tests\Repository;
+namespace Iad\Bundle\DbDecorationBundle\Tests\App\Repository;
 
-use Iad\Bundle\DbDecorationBundle\Tests\Entity\VictoriousKangaroo;
+use Iad\Bundle\DbDecorationBundle\Tests\App\Entity\VictoriousKangaroo;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
