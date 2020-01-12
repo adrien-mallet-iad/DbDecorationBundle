@@ -22,14 +22,15 @@
 !var/log/.gitkeep
 
 # Cache, session files and logs (Symfony3)
-/Tests/var/cache/*
-/Tests/var/logs/*
-/Tests/var/sessions/*
-/Tests!var/cache/.gitkeep
-/Tests!var/logs/.gitkeep
-/Tests!var/sessions/.gitkeep
-/Tests/Tests/App/cache
-/Tests/Tests/App/logs
+Tests/App/var/cache/
+/Tests/App/var/cache/*
+/Tests/App/var/logs/*
+/Tests/App/var/log/*
+/Tests/App/var/sessions/*
+!/Tests/App/var/cache/.gitkeep
+!/Tests/App/var/logs/.gitkeep
+!/Tests/App/var/sessions/.gitkeep
+/Tests/App/var/data_test.db
 
 # Logs (Symfony4)
 /Tests/var/log/*

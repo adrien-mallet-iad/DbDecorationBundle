@@ -1,0 +1,13 @@
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+                           
+                            
+
+    Iad\Bundle\DbDecorationBundle\Tests\App\:
+        resource: '../*'
+        exclude: '../{config,bin,var,DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+

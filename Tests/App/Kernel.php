@@ -1,6 +1,6 @@
 <?php
 
-namespace Iad\Bundle\DbDecorationBundle\Tests;
+namespace Iad\Bundle\DbDecorationBundle\Tests\App;
 
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Config\Loader\LoaderInterface;
