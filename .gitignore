@@ -30,6 +30,7 @@
 /Tests!var/sessions/.gitkeep
 /Tests/Tests/App/cache
 /Tests/Tests/App/logs
+Tests/var/data_test.db
 
 # Logs (Symfony4)
 /Tests/var/log/*
