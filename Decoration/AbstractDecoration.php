@@ -3,7 +3,7 @@
 /*
  * The MIT License
  *
- * Copyright 2019 iad international.
+ * Copyright 2019 noobu.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,37 +24,44 @@
  * THE SOFTWARE.
  */
 
-namespace Iad\Bundle\DbDecorateBundle\Annotation;
+namespace Iad\Bundle\DbDecorationBundle\Decoration;
 
-use Doctrine\Common\Annotations\Annotation;
+use RuntimeException;
 
 /**
- * Annotation for Decoration details
+ * Description of AbstractDecoration
  *
- * @author Adrien MALLET <adrien.mallet@iadinternational.com>
- * 
- * @Annotation
- * @Target({"PROPERTY"})
- * 
+ * @author noobu
  */
-final class Decorate 
+abstract Class AbstractDecoration implements DecorationInterface
 {
-    /**
-     * @Required
-     * 
-     * @var string
-     */
-    public $type;
+    const DECORATION_NOT_FOUND = "No decoration handler was found for this kind of decoration : %s";
+    const DECORATION_TYPE = [];
     
     /**
-     *
-     * @var string
+     * @var DecorationInterface 
      */
-    public $value;
+    protected $nextDecoration;
     
-    /**
-     *
-     * @var string
-     */
-    public $transformer;
+    public function handleDecoration(string $type)
+    {
+        if ($this->nextDecoration) {
+            return $this->nextDecoration->handleDecoration($type);
+        }
+        
+        throw new RuntimeException(sprintf(self::DECORATION_NOT_FOUND, $type));
+    }
+
+    public function setNextDecoration(DecorationInterface $decoration): DecorationInterface 
+    {
+        $this->nextDecoration = $decoration;
+        
+        return $decoration;
+    }
+    
+    public function getHandleDecorationType(): array 
+    { 
+        return static::DECORATION_TYPE;
+    }
+
 }
