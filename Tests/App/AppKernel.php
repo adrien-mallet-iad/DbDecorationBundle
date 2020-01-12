@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-namespace Iad\Tests\DbDecorationBundle\App;
+namespace Iad\Bundle\DbDecorationBundle\Tests\App;
 
 use Iad\Bundle\DbDecorationBundle\DbDecorationBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;

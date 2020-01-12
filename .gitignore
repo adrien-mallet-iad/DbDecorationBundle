@@ -21,6 +21,20 @@
 /var/log/*
 !var/log/.gitkeep
 
+# Cache, session files and logs (Symfony3)
+/Tests/var/cache/*
+/Tests/var/logs/*
+/Tests/var/sessions/*
+/Tests!var/cache/.gitkeep
+/Tests!var/logs/.gitkeep
+/Tests!var/sessions/.gitkeep
+/Tests/Tests/App/cache
+/Tests/Tests/App/logs
+
+# Logs (Symfony4)
+/Tests/var/log/*
+!/Tests/var/log/.gitkeep
+
 # Parameters
 /app/config/parameters.yml
 /app/config/parameters.ini

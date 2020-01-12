@@ -3,7 +3,7 @@
 /*
  * The MIT License
  *
- * Copyright 2019 iad international.
+ * Copyright 2019 noobu.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,37 +24,38 @@
  * THE SOFTWARE.
  */
 
-namespace Iad\Bundle\DbDecorateBundle\Annotation;
+namespace Iad\Bundle\DbDecorationBundle\Decoration;
 
-use Doctrine\Common\Annotations\Annotation;
+use Iad\Bundle\DbDecorationBundle\Faker\DecorateFakerInterface;
 
 /**
- * Annotation for Decoration details
+ * Description of IbanDecoration
  *
- * @author Adrien MALLET <adrien.mallet@iadinternational.com>
- * 
- * @Annotation
- * @Target({"PROPERTY"})
- * 
+ * @author noobu
  */
-final class Decorate 
+class IbanDecoration extends AbstractDecoration 
 {
-    /**
-     * @Required
-     * 
-     * @var string
-     */
-    public $type;
+    const DECORATION_TYPE = [
+        "iban",
+    ];
+
+    public function __construct(DecorateFakerInterface $faker)
+    {
+        $this->faker = $faker;
+    }
     
-    /**
-     *
-     * @var string
-     */
-    public $value;
+    public function handleDecoration(string $type) { 
+        
+        if (in_array($type, self::DECORATION_TYPE)) {
+            
+            return $this->faker; 
+        }
+        
+        parent::handleDecoration($type);
+    }
     
-    /**
-     *
-     * @var string
-     */
-    public $transformer;
+    public function getHandleDecorationType(): array 
+    { 
+        return static::DECORATION_TYPE;
+    }
 }
