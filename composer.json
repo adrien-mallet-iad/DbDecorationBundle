@@ -13,23 +13,32 @@
     "prefer-stable": true,
     "autoload": {
 	    "psr-4": {
-		    "Iad\\DbDecorationBundle\\": ""
+		    "Iad\\Bundle\\DbDecorationBundle\\": ""
 	    }
     },
     "autoload-dev": {
         "psr-4": {
-		    "Iad\\Test\\DbDecorationBundle\\": "Test/"
+		    "Iad\\Bundle\\DbDecorationBundle\\Tests\\": "Tests/"
         }
     },
     "require": {
-        "symfony/http-kernel": "4.2.*",
-        "symfony/dependency-injection": "4.2.*",
-        "doctrine/annotations": "^1.8"
+        "symfony/http-kernel": "^4.2",
+        "symfony/dependency-injection": "^4.2",
+        "doctrine/annotations": "^1.8",
+        "symfony/config": "^4.2",
+        "doctrine/common": "^2.11",
+        "symfony/event-dispatcher": "^4.2"
     },
     "require-dev": {
-        "symfony/framework-bundle": "4.2.*",
-        "symfony/yaml": "4.2.*",
-        "symfony/console": "4.2.*",
-        "symfony/process": "4.2.*"
+        "symfony/framework-bundle": "^4.2",
+        "symfony/yaml": "^4.2",
+        "symfony/console": "^4.2",
+        "symfony/process": "^4.2",
+        "ext-sqlite3": "^7.3",
+        "doctrine/orm": "^2.7",
+        "doctrine/doctrine-fixtures-bundle": "^3.3",
+        "symfony/dotenv": "^5.0",
+        "doctrine/doctrine-bundle": "^2.0",
+        "symfony/maker-bundle": "^1.14"
     }
 }

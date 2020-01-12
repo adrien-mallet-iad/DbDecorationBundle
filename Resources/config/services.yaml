@@ -1,0 +1,24 @@
+services:
+  _default:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  Iad\Bundle\DbDecorationBundle\:
+    resource: '../../*'
+    exclude: '../../{DependencyInjection,Entity, Tests,Repository}'
+
+  
+  Iad\Bundle\DbDecorationBundle\Decoration\AbstractDecoration:
+      abstract:  true
+      calls:
+          - [setNextDecoration]
+
+  Iad\Bundle\DbDecorationBundle\Decoration\IbanDecoration:
+    parent: Iad\Bundle\DbDecorationBundle\Decoration\AbstractDecoration
+    arguments:
+      - '@iad.faker.iban_faker'
+    tags: ['iad.data.decoration']
+
+  iad.faker.iban_faker:
+    class: Iad\Bundle\DbDecorationBundle\Decoration\Faker\IbanFaker

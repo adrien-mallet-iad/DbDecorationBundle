@@ -3,7 +3,7 @@
 /*
  * The MIT License
  *
- * Copyright 2019 iad international.
+ * Copyright 2019 Adrien MALLET <adrien.mallet@iadinternational.com>.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,37 +24,15 @@
  * THE SOFTWARE.
  */
 
-namespace Iad\Bundle\DbDecorateBundle\Annotation;
-
-use Doctrine\Common\Annotations\Annotation;
+namespace Iad\Bundle\DbDecorationBundle\Decoration;
 
 /**
- * Annotation for Decoration details
  *
  * @author Adrien MALLET <adrien.mallet@iadinternational.com>
- * 
- * @Annotation
- * @Target({"PROPERTY"})
- * 
  */
-final class Decorate 
+interface DecorationInterface 
 {
-    /**
-     * @Required
-     * 
-     * @var string
-     */
-    public $type;
-    
-    /**
-     *
-     * @var string
-     */
-    public $value;
-    
-    /**
-     *
-     * @var string
-     */
-    public $transformer;
+    public function setNextDecoration(DecorationInterface $decoration): DecorationInterface;
+    public function handleDecoration(string $type);
+    public function getHandleDecorationType(): array;
 }

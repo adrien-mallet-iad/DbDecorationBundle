@@ -1,7 +1,7 @@
 <?php
 // tests/App/console
 
-namespace Iad\Tests\DbDecorationBundle\App;
+namespace Iad\Bundle\DbDecorationBundle\Tests\App;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
