@@ -28,19 +28,20 @@ class DbDecorationExtension extends Extension
         if (!$container->has('iad.bundle.service.decoration')) {
             return;
         }
-
+        
         $decorationService = $container->getDefinition('iad.bundle.service.decoration');
 
         $decorations = $container->findTaggedServiceIds('iad.data.decoration');
-        $currentDecorationRef = null;
-        foreach($decorations as $id => $decoration) {
-            $decorationRef = new Reference($id);
-            if ($currentDecorationRef) {
-
+                
+        $currentDecorationDefinition = null;
+        foreach($decorations as $id => $_) {
+            $decorationDefinition = $container->getDefinition($id);
+            if ($currentDecorationDefinition) {
+                $currentDecorationDefinition->addMethodCall('setNextDecoration', [$decorationDefinition]);
             }
-            $currentDecorationRef = $decorationRef;
+            $currentDecorationDefinition = $decorationDefinition;
         } 
-
-        $decorationService->addMethodCall('setDecorationChains', [$currentDecorationRef]);
+        
+        $decorationService->addMethodCall('setDecorationsChain', [$currentDecorationDefinition]);
     }
 }
