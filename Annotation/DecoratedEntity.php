@@ -1,6 +1,6 @@
 <?php
 
-namespace Iad\Bundle\DbDecorateBundle\Annotation;
+namespace Iad\Bundle\DbDecorationBundle\Annotation;
 
 use Doctrine\Common\Annotations\Annotation;
 
