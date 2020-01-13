@@ -24,7 +24,7 @@
  * THE SOFTWARE.
  */
 
-namespace Iad\DbDecorationBundle\Transformer;
+namespace Iad\Bundle\DbDecorationBundle\Transformer;
 
 /**
  * Description of IbanTransformer
@@ -33,5 +33,8 @@ namespace Iad\DbDecorationBundle\Transformer;
  */
 class IbanTransformer implements DecorationTransformerInterface 
 {
-    
+    public function transform()
+    {
+        return 'FRiad3445667097847365685746';
+    }
 }
