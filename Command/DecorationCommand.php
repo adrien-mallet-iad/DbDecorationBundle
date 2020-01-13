@@ -3,7 +3,7 @@
 /*
  * The MIT License
  *
- * Copyright 2019 Adrien MALLET <adrien.mallet@iadinternational.com>.
+ * Copyright 2020 noobu.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,17 +24,35 @@
  * THE SOFTWARE.
  */
 
-namespace Iad\Bundle\DbDecorationBundle\Transformer;
+namespace Iad\Bundle\DbDecorationBundle\Command;
+
+use Iad\Bundle\DbDecorationBundle\Service\Decoration;
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Description of IbanTransformer
+ * Description of DecorationCommand
  *
- * @author Adrien MALLET <adrien.mallet@iadinternational.com>
+ * @author noobu
  */
-class IbanTransformer implements DecorationTransformerInterface 
+class DecorationCommand extends Command 
 {
-    public function transform()
+    protected static $defaultName = 'iad:db:decoration';
+
+    protected $decoration;
+
+    public function __construct(Decoration $decoration)
     {
-        return 'FRiad3445667097847365685746';
+        $this->decoration = $decoration;
+        parent::__construct(self::$defaultName);
+    }
+    
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        // outputs multiple lines to the console (adding "\n" at the end of each line)
+        $output->writeln("Database decoration starting at " . \date('Y-m-d h:i:s'));
+        $this->decoration->start();
+        $output->writeln("Database decoration ending at " . \date('Y-m-d h:i:s'));
     }
 }

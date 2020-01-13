@@ -24,7 +24,7 @@
  * THE SOFTWARE.
  */
 
-namespace Iad\DbDecorationBundle\Transformer;
+namespace Iad\Bundle\DbDecorationBundle\Transformer;
 
 /**
  *

@@ -11,7 +11,7 @@ class VictoriousKangarooFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         // create 20 VictoriousKangaroo
-        for ($i = 0; $i < 20; $i++) {
+        for ($i = 0; $i < 2000000; $i++) {
             $kangaroo = new VictoriousKangaroo();
             $kangaroo->setName('Kangaroo number #'.$i);
             $kangaroo->setIban('FR REAL IBAN #00000'.$i);

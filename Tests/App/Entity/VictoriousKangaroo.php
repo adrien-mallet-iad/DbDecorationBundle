@@ -3,9 +3,12 @@
 namespace Iad\Bundle\DbDecorationBundle\Tests\App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Iad\Bundle\DbDecorationBundle\Annotation\DecoratedEntity;
+use Iad\Bundle\DbDecorationBundle\Annotation\Decorate;
 
 /**
- * @ORM\Entity(repositoryClass="Iad\Bundle\DbDecorationBundle\Tests\Repository\VictoriousKangarooRepository")
+ * @ORM\Entity(repositoryClass="Iad\Bundle\DbDecorationBundle\Tests\App\Repository\VictoriousKangarooRepository")
+ * @DecoratedEntity()
  */
 class VictoriousKangaroo
 {
@@ -18,6 +21,7 @@ class VictoriousKangaroo
 
     /**
      * @ORM\Column(type="string", length=34)
+     * @Decorate(type="iban")
      */
     private $iban;
 

@@ -29,8 +29,8 @@ namespace Iad\Bundle\DbDecorationBundle\Service;
 use Doctrine\Common\Annotations\Reader;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\EntityManagerInterface;
-use Iad\Bundle\DbDecorateBundle\Annotation\Decorate;
-use Iad\Bundle\DbDecorateBundle\Annotation\DecoratedEntity;
+use Iad\Bundle\DbDecorationBundle\Annotation\Decorate;
+use Iad\Bundle\DbDecorationBundle\Annotation\DecoratedEntity;
 use Iad\Bundle\DbDecorationBundle\Decoration\DecorationInterface;
 use ReflectionClass;
 
@@ -86,7 +86,6 @@ class Decoration
     public function start()
     {
         foreach($this->metadata as $currentMetadata) {
-
             $this->decorateEntity($currentMetadata->getName(), $currentMetadata->getSingleIdentifierFieldName());
         }
     }
@@ -97,8 +96,8 @@ class Decoration
         if (!$decorateAnnotation = $this->reader->getClassAnnotation($reflectedClass, DecoratedEntity::class)) {
             return;
         }
-        
-        $count = $this->em->createQuery(sprintf(static::DEFAULT_COUNT_QUERY, $className))->getSingleScalerResult();
+                
+        $count = $this->entityManager->createQuery(sprintf(static::DEFAULT_COUNT_QUERY, $className))->getSingleScalarResult();
 
         $annotateProperties = [];
         foreach ($reflectedClass->getProperties() as $property) {
@@ -114,12 +113,12 @@ class Decoration
             $result = $repository->findBy([], [$identifier => 'ASC'], $decorateAnnotation->limitSize, $index*$decorateAnnotation->limitSize);
             foreach($result as $entity) {
                 foreach($annotateProperties as $propertyName => $annotateProperty) {
-                    if(!property_exists($propertyName, $entity)) {
+                    if(!property_exists($entity, $propertyName)) {
                         continue;
                     }
                     $reflectedProperty = $reflectedClass->getProperty($propertyName);
                     $reflectedProperty->setAccessible(true);
-                    $reflectedProperty->{$propertyName} = $annotateProperty->decorate($reflectedProperty->{$propertyName});
+                    $reflectedProperty->setValue($entity, $annotateProperty->fake($reflectedProperty->getValue($entity)));
                 }
             }
             $this->entityManager->flush();
