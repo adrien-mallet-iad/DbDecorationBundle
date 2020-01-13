@@ -1,20 +1,34 @@
 services:
 
-  Iad\Bundle\DbDecorationBundle\:
-    resource: '../../*'
-    exclude: '../../{DependencyInjection,Entity, Tests,Repository}'
+    Iad\Bundle\DbDecorationBundle\:
+        resource: '../../*'
+        exclude: '../../{DependencyInjection,Entity,Tests,Repository,vendor,Resources,DbDecorationBundle.php}'
 
-  
-  Iad\Bundle\DbDecorationBundle\Decoration\AbstractDecoration:
-      abstract:  true
-      calls:
-          - [setNextDecoration]
+    Iad\Bundle\DbDecorationBundle\Decoration\AbstractDecoration:
+        abstract:  true
 
-  Iad\Bundle\DbDecorationBundle\Decoration\IbanDecoration:
-    parent: Iad\Bundle\DbDecorationBundle\Decoration\AbstractDecoration
-    arguments:
-      - '@iad.faker.iban_faker'
-    tags: ['iad.data.decoration']
+    Iad\Bundle\DbDecorationBundle\Decoration\IbanDecoration:
+        parent: Iad\Bundle\DbDecorationBundle\Decoration\AbstractDecoration
+        arguments:
+            - '@iad.faker.iban_faker'
+        tags: ['iad.data.decoration']
 
-  iad.faker.iban_faker:
-    class: Iad\Bundle\DbDecorationBundle\Decoration\Faker\IbanFaker
+    iad.faker.iban_faker:
+        class: Iad\Bundle\DbDecorationBundle\Faker\IbanFaker
+        arguments:
+            - '@iad.transformer.iban_transformer'
+    
+    iad.transformer.iban_transformer:
+        class: Iad\Bundle\DbDecorationBundle\Transformer\Ibantransformer
+        
+    iad.bundle.service.decoration:
+        class: Iad\Bundle\DbDecorationBundle\Service\Decoration
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - '@annotations.cached_reader'
+            
+    iad.command.decoration:
+        class: Iad\Bundle\DbDecorationBundle\Command\DecorationCommand
+        arguments:
+            - '@iad.bundle.service.decoration'
+        tags: ['console.command']
